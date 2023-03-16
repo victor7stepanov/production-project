@@ -9,13 +9,18 @@ export function buildLoaders(options: BuildOptions): webpack.RuleSetRule[] {
         exclude: /node_modules/,
     }
 
-    const sassLoader = {
+    const cssLoader = {
             test: /\.s[ac]ss$/i,
             use: [
                 // Creates `style` nodes from JS strings
                 options.isDev ? "style-loader" : MiniCssExtractPlugin.loader,
                 // Translates CSS into CommonJS
-                "css-loader",
+                {
+                    loader: "css-loader",
+                    options: {
+                        modules: true,
+                    }
+                },
                 // Compiles Sass to CSS
                 "sass-loader",
             ],
@@ -23,6 +28,6 @@ export function buildLoaders(options: BuildOptions): webpack.RuleSetRule[] {
 
     return [
         typescriptLoader,
-        sassLoader,
+        cssLoader,
     ]
 }
