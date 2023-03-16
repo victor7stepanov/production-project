@@ -1,7 +1,9 @@
-export const MainPage = () => {
+const MainPage = () => {
     return (
         <div>
             MainPage
         </div>
     );
 };
+
+export default MainPage;
